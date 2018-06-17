@@ -53,49 +53,40 @@ var howManyMovies = function(array) {
   );
 };
 
-// Order by title and print the first 20 titles
+// Order by title and return the first 20 titles
 
-var orderAlphabetically = function (array) {
-
-
-  var onlyTitle = array.map(function(item){
+var orderAlphabetically = function(array) {
+  var onlyTitle = array.map(function(item) {
     return item.title;
   });
-  
+
   onlyTitle.sort();
 
   var twentyTitle = onlyTitle.slice(0, 20);
 
-
   return twentyTitle;
 };
 
-
 // Best yearly rate average
 
-
-var findSpecific = function(year, array){
-  return array.filter(function(item){
+var findSpecific = function(year, array) {
+  return array.filter(function(item) {
     return item.year == year;
   });
 };
 
-
-var bestYearAvg = function(array){
-  if(array.length === 0){
+var bestYearAvg = function(array) {
+  if (array.length === 0) {
     return undefined;
-  } 
+  }
 
   var yearAverages = [];
 
-for (var i = 1900; i < 2018; i++){
-  var year = {};
-  year.average = ratesAverage(findSpecific(i, array));
-  year.year = i; 
+  for (var i = 1900; i < 2018; i++) {
+    var year = {};
+    year.average = ratesAverage(findSpecific(i, array));
+    year.year = i;
 
-  yearAverages.push(year);
-}
-
- 
-
+    yearAverages.push(year);
+  }
 };
