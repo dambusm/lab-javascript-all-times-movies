@@ -86,7 +86,34 @@ var bestYearAvg = function(array) {
     var year = {};
     year.average = ratesAverage(findSpecific(i, array));
     year.year = i;
-
-    yearAverages.push(year);
+    // Average will be NaN if there were no movies found for that year, so only push to the array if average is not NaN
+    if (!isNaN(year.average)) {
+      yearAverages.push(year);
+    }
   }
+
+  // Sort array of years by average rating
+
+  yearAverages.sort(function(a, b) {
+    if (a.average < b.average) {
+      return -1;
+    } else if (a.average > b.average) {
+      return 1;
+    } else {
+      if (a.year < b.year) {
+        return 1;
+      } else if (a.year > b.year) {
+        return -1;
+      } else {
+        return 0;
+      }
+    }
+  });
+
+  return (
+    "The best year was " +
+    yearAverages[yearAverages.length - 1].year +
+    " with an average rate of " +
+    yearAverages[yearAverages.length - 1].average
+  );
 };
